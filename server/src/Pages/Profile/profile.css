@@ -1,0 +1,36 @@
+.profile{
+    margin:0%;
+    background-color: antiquewhite;
+}
+
+.profileContent{
+    border : 1.5px solid blue;
+    background-color: antiquewhite;
+    width :30%;
+    margin : 3% auto;
+    padding: 2%;
+    
+}
+
+
+.profileData{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center;
+    align-items: center; */
+
+}
+
+.profileDataleft{
+    
+}
+
+.profileDataright{
+    float :right;
+    margin-left: 20%;
+    position :relative;
+}
+
+.updateForm{
+    display: none;
+}

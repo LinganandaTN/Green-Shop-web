@@ -1,0 +1,58 @@
+.root{
+  height:auto;
+  background-color: rgb(196, 251, 201);
+  background: linear-gradient(to right, #8fdae3, #bbe3d7);
+
+} 
+
+.carousel{
+  padding-top :4.5%;
+  background-color: rgba(207, 113, 113, 0.5);
+
+} 
+  .carousel-item {
+    height: 450px;
+    background: linear-gradient(to right, #41ccdb, #50e7bd);
+    color:red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+
+.car-image{
+  height: 300px ;
+  width:400px;
+}
+  .carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    color:#083a2c;
+  }
+
+  .card-slider {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    background-color: rgba(43, 116, 98, 0.892);
+
+}
+
+.card {
+    flex: 0 0 auto;
+    width: 300px;
+    margin-right: 15px;
+    scroll-snap-align: start;
+    background: linear-gradient(to right, #41ccdb, #50e7bd);
+
+}
+.card-body{
+  background-color: #50e7bd;
+  background: linear-gradient(to right, #41ccdb, #50e7bd);
+
+}
+
+.card-main{
+  margin-top:110%;
+}

@@ -1,0 +1,11 @@
+.footer {
+    background-color: #02181c;
+    padding: 40px 0;
+    margin-top: 20px;
+    margin:inherit 0%;
+    color:aqua;
+    width:100%;
+}
+.footer p {
+    margin-bottom: 0;
+}

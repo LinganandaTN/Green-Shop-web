@@ -1,0 +1,75 @@
+
+.authLink{
+    color:blueviolet;
+    background-color:rgb(159, 238, 217);
+    cursor: pointer; 
+}
+
+.authGo{
+    background-color: rgb(85, 44, 44);
+    color:azure;
+}
+
+.authGo:hover{
+    background-color: rgb(255, 252, 252);
+    color:rgb(85, 44, 44);
+    cursor: pointer; 
+}
+.labelNote{
+    float: left;
+    margin-top:1.5%;
+    margin-left:4%;
+
+}
+
+.labelGroup{
+    color: rgb(85, 44, 44); 
+    background-color: rgb(149, 251, 158);
+    margin: 5%;
+    box-shadow: 2px 4px 2px#a4e9fe;
+    /* width:inherit; */
+    display: flex;
+    justify-content: space-between;
+    height: 30px
+}
+
+
+.authHead{
+    color: rgb(9, 96, 150); 
+    padding: 0%;
+    background-color:  rgb(166, 280, 201);
+    height: 10%;
+    min-height: 40px;
+    margin :0%;
+    padding-top :2%;
+    position: fixed;
+    width:100%;
+    z-index:1;
+    box-shadow:0px 2px rgb(189, 210, 204);
+    margin-top:4%;
+}
+
+
+.authContent{
+    justify-content: space-evenly;
+    border: 2px solid #a4e9fe;
+    width :30%;
+align-items: center;
+text-align: center;
+ margin : 8% auto;
+ background-color:rgb(213, 248, 253) ;
+    min-width: 400px;
+    padding: 2%;
+    margin-bottom: 2%;
+
+}
+#alert{
+   color: rgb(85, 44, 44);
+   margin-bottom: 10%;
+}
+
+.auth{
+    height: 100%;
+   background-color:  rgb(196, 251, 201);
+}
+
