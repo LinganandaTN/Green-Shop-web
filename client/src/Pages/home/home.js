@@ -1,22 +1,55 @@
-import React from 'react';
+import React, { useState, useEffect,useContext } from 'react';
+import axios from 'axios';
 import image1 from './images/01.png';
 import image2 from './images/02.png';
 import Footer from '../footer/Footer.jsx';
- import './home.css';
- import 'jquery';
- import 'bootstrap/dist/js/bootstrap.bundle.min.js';
- import 'slick-carousel/slick/slick.min.js';
- import 'slick-carousel/slick/slick.css'; // Import Slick Carousel CSS
- import 'slick-carousel/slick/slick-theme.css'; // Import Slick Carousel CSS
- import '@fortawesome/fontawesome-free/css/all.min.css'; // Import Font Awesome CSS
- import 'wow.js/dist/wow.min.js';
- import 'bootstrap/dist/css/bootstrap.min.css';
+import './home.css';
+import 'jquery';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'slick-carousel/slick/slick.min.js';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'wow.js/dist/wow.min.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import UserContext from '../../context/UserContext';
 
+const Home_body = () => {
+  const {user} = useContext(UserContext);
 
-function Home_body(){
+    const [data, setData] = useState(null);
+    const {setUser} = useContext(UserContext);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            // localStorage.removeItem('user');
+            try {
+                const local_token = localStorage.getItem('user');
+                console.log("hii from home");
+                console.log(local_token);
+                const response = await axios.get('http://localhost:5005/', {
+                    headers: {
+                        Authorization: `Bearer ${local_token}`
+                    }
+                });
+                if(response.data.status)
+                {
+                    
+                }
+                console.log('Data:', response.data.data);
+                setData(response.data.data); // Update state with fetched data
+                setUser(response.data.data);
+                console.log(user);
+
+            } catch (error) {
+                console.error('Error while sending home details:', error);
+            }
+        };
+
+        fetchData();
+    }, []); // Empty dependency array to run effect only once
+    
+
     return (
       <div className = 'root'>
       <div className = 'carousel-root'>
@@ -25,7 +58,7 @@ function Home_body(){
     <div className="carousel-item active">
       <div className="carousel-caption">
       <img src={image1}  className=" car-image" alt="..."/>
-        <h5>Mega Sale</h5>
+        <h5>hii</h5>
         <p>Fresh Vegitables </p>
       </div>
     </div>
@@ -94,6 +127,6 @@ function Home_body(){
 </div>
 );
 
-}
+};
 
 export default Home_body;

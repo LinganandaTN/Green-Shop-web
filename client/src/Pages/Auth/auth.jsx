@@ -1,10 +1,11 @@
 import React, { useState, useEffect ,useContext} from 'react';
-import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import './auth.css';
 import UserContext from '../../context/UserContext.js';
-
+import {login,register} from '../../actions/Auth.js';
+import {Validate} from './validation.jsx'
 const Auth = () => {
+
     const [isLogin, is_Log_fun] = useState(true);
     const [name, name_fun] = useState('');
     const [email, mail_fun] = useState('');
@@ -14,47 +15,27 @@ const Auth = () => {
     const navigate = useNavigate();
     const {setUser} = useContext(UserContext);
 
-    function Validate(){
-      const gmailPattern = /^[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*@gmail\.com$/;
-      const isGmail = gmailPattern.test(email);
-      const passPattern =  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-      const isPass = passPattern.test(password);
-      const name_len = name.length;
-      const pass_match = password === repassword ? true: false;
-        if( (isGmail && isPass) && isLogin){
-          return true;
-        }
-      
-        else if( (name_len > 4 && isGmail && isPass && pass_match) && !isLogin) {
-          return true;
-        }      
-        else {
-          return false;}
-      }
       const Auth_func = async () => {
       try {
 
         if(isLogin){ // for login
           !isLogin && pass_alert_func("")
-
-          if (Validate()){  //validating the entered details
-            const login_data={
-              email : email,
-              password: password,
-            }
-
-            const response = await axios.post('http://localhost:5005/user/login',{data : login_data});
-            console.log('login details  sent:', response.data);
-            { document.getElementById('alert').innerText = ""}
-            if((response.data === 'undefined')){
-              { document.getElementById('alert').innerText = "user not found"}
-              console.log(response.data);
-              navigate('/Auth');
+          const login_data={
+            email : email,
+            password: password,
+          }
+          if (Validate(login_data, "Login")){  //validating the entered details
+            
+            console.log('login validated');
+            const log_status = await login(login_data,setUser);
+            console.log(log_status);
+            if(log_status ==="foundUser"){
+              navigate('/');
             }
             else{
-              navigate('/');
-                const user =response.data;
-                setUser(user);
+              console.log('user not found');
+              { document.getElementById('alert').innerText = "user not found"}
+              navigate('/Auth');
             }
           }
         else{
@@ -62,26 +43,25 @@ const Auth = () => {
         }
       }
       else {  // for Register module
-          if(Validate()){
-          const reg_data={
-            name : name,
-            email : email,
-            password: password,
-          }
-          
-          const response = await axios.post('http://localhost:5005/user/register',{data : reg_data});
-          console.log('registration details sent:', response.data);
+        const register_data={
+          name : name,
+          email : email,
+          password: password,         
+        }
+        if(Validate(register_data,"Register")){
+         
+          console.log('register validated');
+            const reg_status = await register(register_data,setUser);
+            console.log(reg_status);
           { document.getElementById('alert').innerText = ""}
           // { document.getElementById('passalert').innerText = pass_alert }
-          if((response.data == null)){
+          if((reg_status === "existUser" )){
+            { document.getElementById('alert').innerText = "Already registered better try login"}
             navigate('/Auth');
           }
 
           else{
             navigate('/');
-            const user =response.data;
-            console.log(user)
-            setUser(user);
           }
         }
       

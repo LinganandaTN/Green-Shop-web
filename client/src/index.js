@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import App1 from './tep_pro/App1';
+import App_t1 from './App_t1.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
